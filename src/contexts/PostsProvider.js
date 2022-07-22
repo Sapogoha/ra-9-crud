@@ -15,8 +15,19 @@ function PostsProvider(props) {
       });
   }, []);
 
+  // const getPosts = () => {
+  //   fetch(process.env.REACT_APP_URL)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setPosts(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   return (
-    <PostsContext.Provider value={{ posts, setPosts }}>
+    <PostsContext.Provider value={{ posts }}>
       {props.children}
     </PostsContext.Provider>
   );

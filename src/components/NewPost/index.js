@@ -1,12 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function NewPost() {
+  const emptyFormState = { content: '' };
+  const [form, setForm] = useState(emptyFormState);
+  let navigate = useNavigate();
+  const post = { id: 0, content: form.content.trim() };
+
+  const handleAdd = (evt) => {
+    evt.preventDefault();
+    if (form.content.trim() === '') {
+      return;
+    }
+
+    fetch(process.env.REACT_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify(post),
+    }).then(() => {
+      navigate('/posts');
+    });
+  };
+
+  const handleChange = (evt) => {
+    const { id, value } = evt.target;
+    setForm((prevForm) => ({ ...prevForm, [id]: value }));
+  };
+
   return (
     <div className="card">
       <div className="card-body">
-        <form className="newPost">
-          <Link to={'/'}>
+        <form className="newPost" onSubmit={handleAdd}>
+          <Link to={'/posts'}>
             <button
               type="button"
               className="btn-close"
@@ -19,9 +43,12 @@ function NewPost() {
             <input
               type="text"
               className="form-control"
-              id="newPost"
               aria-describedby="postTextInput"
               placeholder="Enter text here..."
+              id="content"
+              value={form.content}
+              onChange={handleChange}
+              required
             />
           </div>
 

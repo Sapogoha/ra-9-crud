@@ -7,10 +7,10 @@ This is a variation of your feed on some social media.
 Here you can:
 
 - check all your posts
-- create a new post
-- open some post
-- edit opened post
-- delete opened post
+- create new posts
+- open posts
+- edit posts
+- delete posts
 
 You'll also need to use `npm run start` on the `backend` dirrectory to check how everything work.
 

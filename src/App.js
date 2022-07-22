@@ -15,7 +15,7 @@ function App() {
       <div className="page">
         <PostsProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/posts" element={<Home />} />
             <Route path="/posts/new" element={<NewPost />} />
             <Route path="/posts/:postId" element={<PostOpened />} />
             <Route path="/posts/:postId/edit" element={<EditPost />} />

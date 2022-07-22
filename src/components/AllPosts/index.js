@@ -21,7 +21,11 @@ function AllPosts() {
       {posts?.map((post) => (
         <li className="post" key={post.id}>
           <Link to={`/posts/${post.id}`}>
-            <PostItem id={post.id} content={post.content} />
+            <PostItem
+              id={post.id}
+              content={post.content}
+              created={post.created}
+            />
           </Link>
         </li>
       ))}
