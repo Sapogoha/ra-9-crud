@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PostsContext } from '../../contexts/PostsContext';
 
 import PostItem from '../PostItem';
 
 function AllPosts() {
-  const { posts } = useContext(PostsContext);
+  const { posts, getPosts } = useContext(PostsContext);
+
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   if (posts?.length < 1)
     return (

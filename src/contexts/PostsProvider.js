@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { PostsContext } from './PostsContext';
 
 function PostsProvider(props) {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+  const getPosts = () => {
     fetch(process.env.REACT_APP_URL)
       .then((response) => response.json())
       .then((data) => {
@@ -13,21 +13,10 @@ function PostsProvider(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-
-  // const getPosts = () => {
-  //   fetch(process.env.REACT_APP_URL)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setPosts(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  };
 
   return (
-    <PostsContext.Provider value={{ posts }}>
+    <PostsContext.Provider value={{ posts, getPosts }}>
       {props.children}
     </PostsContext.Provider>
   );
